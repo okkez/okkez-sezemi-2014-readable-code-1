@@ -1,3 +1,4 @@
 #! /usr/bin/env ruby
 
-puts "オムライス"
+puts ARGF.read
+
