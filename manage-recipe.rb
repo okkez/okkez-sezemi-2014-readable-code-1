@@ -1,4 +1,5 @@
 #! /usr/bin/env ruby
 
-puts ARGF.read
-
+ARGF.readlines.each_with_index do |line, index|
+  puts "#{index}: #{line.chomp}"
+end
