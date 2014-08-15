@@ -1,5 +1,34 @@
 #! /usr/bin/env ruby
 
-ARGF.readlines.each_with_index do |line, index|
-  puts "#{index}: #{line.chomp}"
+require "optparse"
+require "yaml"
+
+def main
+  recipe_id = nil
+  recipe_file = nil
+  parser = OptionParser.new
+  parser.on("--id=ID", Integer, "Specify recipe ID") do |id|
+    recipe_id = id
+  end
+  parser.on("--recipe-file=FILE", "Specify recipe data file") do |path|
+    recipe_file = path
+  end
+
+  begin
+    parser.parse!
+  rescue OptionParser::ParseError
+    $stderr.puts $!.message
+    exit 1
+  end
+
+  recipes = YAML.load_file(recipe_file)
+  if recipe_id
+    puts "#{recipe_id}: #{recipes[recipe_id]}"
+  else
+    recipes.each do |id, name|
+      puts "#{id}: #{name}"
+    end
+  end
 end
+
+main
