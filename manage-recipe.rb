@@ -23,10 +23,11 @@ def main
 
   recipes = YAML.load_file(recipe_file)
   if recipe_id
-    puts "#{recipe_id}: #{recipes[recipe_id]}"
+    name, uri = recipes[recipe_id]
+    puts "#{recipe_id}: #{name} #{uri}"
   else
-    recipes.each do |id, name|
-      puts "#{id}: #{name}"
+    recipes.each do |id, (_name, _uri)|
+      puts "#{id}: #{_name} #{_uri}"
     end
   end
 end
