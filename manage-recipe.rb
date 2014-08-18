@@ -6,16 +6,16 @@ require "yaml"
 def main
   recipe_id = nil
   recipe_files = nil
-  user = nil
+  user_id = nil
   parser = OptionParser.new
-  parser.on("--id=ID", Integer, "Specify recipe ID") do |id|
+  parser.on("--recipe-id=ID", Integer, "Specify recipe ID") do |id|
     recipe_id = id
   end
   parser.on("--recipe-files=FILE1,FILE2,FILE3", Array, "Specify recipe data file") do |paths|
     recipe_files = paths
   end
-  parser.on("--user=NAME", "User name") do |name|
-    user = name
+  parser.on("--user-id=ID", Integer, "User ID") do |id|
+    user_id = id
   end
 
   begin
@@ -40,9 +40,10 @@ def main
   end
 
   case
-  when recipe_id && user
-    recipes = data[user]
-    puts user
+  when recipe_id && user_id
+    key = "#{user_id}:#{users[user_id - 1]}"
+    recipes = data[key]
+    puts key
     _name, _uri = recipes[recipe_id]
     puts "#{recipe_id}: #{_name} #{_uri}"
   when recipe_id
@@ -52,9 +53,10 @@ def main
     _name, _uri = recipes[recipe_id]
     puts user
     puts "#{recipe_id}: #{_name} #{_uri}"
-  when user
-    recipes = data[user]
-    puts user
+  when user_id
+    key = "#{user_id}:#{users[user_id - 1]}"
+    recipes = data[key]
+    puts key
     recipes.each do |id, (_name, _uri)|
       puts "#{id}: #{_name} #{_uri}"
     end
