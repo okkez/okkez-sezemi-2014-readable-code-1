@@ -4,17 +4,26 @@
 
   Usage: manage-recipe [options]
           --id=ID                      Specify recipe ID
-          --recipe-file=FILE           Specify recipe data file
+          --recipe-files=FILE1,FILE2,FILE3
+                                       Specify recipe data file
+          --user=NAME                  User name
 
 ## データの形式
 
 YAML を使う。
 
-1:
-  - 名前1
-  - URL1
-2:
-  - 名前2
-  - URL2
+~~~
+---
+kou:
+  1:
+    - オムライス
+    - https://example.com/1
+  2:
+    - 親子丼
+    - https://example.com/2
+  3:
+    - 杏仁豆腐
+    - https://example.com/3
+~~~
 
 のような形式とする。

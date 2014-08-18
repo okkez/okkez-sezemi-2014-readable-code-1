@@ -1,10 +1,11 @@
 ---
-1:
-  - オムライス
-  - https://example.com/1
-2:
-  - 親子丼
-  - https://example.com/2
-3:
-  - 杏仁豆腐
-  - https://example.com/3
+kou:
+  1:
+    - オムライス
+    - https://example.com/1
+  2:
+    - 親子丼
+    - https://example.com/2
+  3:
+    - 杏仁豆腐
+    - https://example.com/3
