@@ -6,12 +6,16 @@ require "yaml"
 def main
   recipe_id = nil
   recipe_file = nil
+  user = nil
   parser = OptionParser.new
   parser.on("--id=ID", Integer, "Specify recipe ID") do |id|
     recipe_id = id
   end
   parser.on("--recipe-file=FILE", "Specify recipe data file") do |path|
     recipe_file = path
+  end
+  parser.on("--user=NAME", "User name") do |name|
+    user = name
   end
 
   begin
@@ -24,8 +28,10 @@ def main
   recipes = YAML.load_file(recipe_file)
   if recipe_id
     name, uri = recipes[recipe_id]
+    puts user if user
     puts "#{recipe_id}: #{name} #{uri}"
   else
+    puts user if user
     recipes.each do |id, (_name, _uri)|
       puts "#{id}: #{_name} #{_uri}"
     end
