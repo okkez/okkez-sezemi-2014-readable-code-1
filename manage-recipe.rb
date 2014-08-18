@@ -26,14 +26,16 @@ def main
   end
 
   data = {}
+  users = []
   recipe_files.each do |recipe_file|
     hash = YAML.load_file(recipe_file)
     name = hash.keys.first
     recipes = hash.values.first
-    if data[name]
-      data[name].update(recipes)
+    users << name
+    if data["#{users.size}:#{name}"]
+      data["#{users.size}:#{name}"].update(recipes)
     else
-      data[name] = recipes
+      data["#{users.size}:#{name}"] = recipes
     end
   end
 
