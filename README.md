@@ -6,7 +6,7 @@
           --recipe-id=ID               Specify recipe ID
           --recipe-files=FILE1,FILE2,FILE3
                                        Specify recipe data file
-          --user=NAME                  User name
+          --user-id=ID                 User ID
 
 ## データの形式
 
